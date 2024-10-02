@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import useContextData from "../hooks/useContextData";
 import { axiosInstance } from "../utils/axiosInstance";
+import { Link } from "react-router-dom";
 
 const Products = () => {
   const [searchValue, setSearchValue] = useState("");
@@ -61,9 +62,12 @@ const Products = () => {
           <p>Logo</p>
         </div>
         <div>
-          <button className=" md:px-3 md:py-2 border rounded-lg lg:rounded-xl border-gray-300">
-            Product Management
-          </button>
+          <Link to={"/product-management"}>
+            {" "}
+            <button className=" md:px-3 md:py-2 border rounded-lg lg:rounded-xl border-gray-300">
+              Product Management
+            </button>
+          </Link>
         </div>
       </div>
       <div>
