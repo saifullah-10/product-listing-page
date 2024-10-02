@@ -1,14 +1,16 @@
 import { useEffect } from "react";
 import { getProducts } from "../utils/productsApi";
+import { useQuery } from "@tanstack/react-query";
 
 const Products = () => {
-  useEffect(() => {
-    const getProduct = async () => {
-      const data = await getProducts();
-      console.log(data.products);
-    };
-    getProduct();
-  }, []);
+  const { data, isFetching, isLoading } = useQuery({
+    queryKey: ["all-products"],
+    queryFn: getProducts,
+  });
+
+  if (isFetching || isLoading) {
+    return <div>Loading...</div>;
+  }
   return <section></section>;
 };
 
