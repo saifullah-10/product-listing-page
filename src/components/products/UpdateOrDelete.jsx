@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import useContextData from "../../hooks/useContextData";
 import { axiosInstance } from "../../utils/axiosInstance";
 import Swal from "sweetalert2";
+import Loading from "../../assets/loading.gif";
 
 const UpdateOrDelete = () => {
   const { allProducts } = useContextData();
@@ -28,7 +29,9 @@ const UpdateOrDelete = () => {
   if (!data) {
     return (
       <>
-        <p>Loading...update</p>
+        <div className=" flex justify-center items-center h-screen">
+          <img src={Loading} />
+        </div>
       </>
     );
   }

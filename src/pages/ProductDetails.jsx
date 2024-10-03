@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Link, useParams } from "react-router-dom";
 import { axiosInstance } from "../utils/axiosInstance";
 import { CiStar } from "react-icons/ci";
+import Loading from "../assets/loading.gif";
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -20,7 +21,11 @@ const ProductDetails = () => {
   ).toFixed(2);
 
   if (isLoading || isFetching) {
-    return <div>Loading...//details</div>;
+    return (
+      <div className=" flex justify-center items-center h-screen">
+        <img src={Loading} />
+      </div>
+    );
   }
   return (
     <section className=" mt-5 w-11/12 font-poopins lg:max-w-screen-xl  mx-auto">

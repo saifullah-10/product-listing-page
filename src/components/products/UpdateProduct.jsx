@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import ProductForm from "./ProductForm";
 import { useQuery } from "@tanstack/react-query";
 import { axiosInstance } from "../../utils/axiosInstance";
-
+import Loading from "../../assets/loading.gif";
 const UpdateProduct = () => {
   const { id } = useParams();
 
@@ -15,7 +15,11 @@ const UpdateProduct = () => {
   });
 
   if (isLoading || isFetching) {
-    return <div>Loading...//update</div>;
+    return (
+      <div className=" flex justify-center items-center h-screen">
+        <img src={Loading} />
+      </div>
+    );
   }
   return (
     <div>

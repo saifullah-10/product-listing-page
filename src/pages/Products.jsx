@@ -3,7 +3,7 @@ import useContextData from "../hooks/useContextData";
 import { axiosInstance } from "../utils/axiosInstance";
 import { Link } from "react-router-dom";
 import ProductCard from "../components/products/ProductCard";
-
+import Loading from "../assets/loading.gif";
 const Products = () => {
   const [searchValue, setSearchValue] = useState("");
   const [checked, setChecked] = useState("");
@@ -59,7 +59,11 @@ const Products = () => {
   }, [allProducts]);
 
   if (!products || loading) {
-    return <div>Loading...</div>;
+    return (
+      <div className=" flex justify-center items-center h-screen">
+        <img src={Loading} />
+      </div>
+    );
   }
   console.log(products);
   return (

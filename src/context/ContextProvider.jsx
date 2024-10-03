@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { createContext } from "react";
 import { getProducts } from "../utils/productsApi";
 import PropTypes from "prop-types";
+import Loading from "../assets/loading.gif";
 
 export const Context = createContext(null);
 
@@ -16,7 +17,11 @@ const ContextProvider = ({ children }) => {
   });
 
   if (isFetching || isLoading) {
-    return <div>Loading...</div>;
+    return (
+      <div className=" flex justify-center items-center h-screen">
+        <img src={Loading} />
+      </div>
+    );
   }
 
   return (
