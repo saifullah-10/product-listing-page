@@ -57,8 +57,8 @@ const Products = () => {
   useEffect(() => {
     setProducts(allProducts?.products);
   }, [allProducts]);
-
-  if (!products || loading) {
+  console.log(products);
+  if (loading) {
     return (
       <div className=" flex justify-center items-center h-screen">
         <img src={Loading} />
@@ -118,11 +118,13 @@ const Products = () => {
             </div>
           </aside>
           <div className="grid lg:gap-8 md:gap-5 gap-3 grid-cols-12 w-full justify-items-center">
-            {products?.map((product) => (
-              <>
-                <ProductCard product={product} />
-              </>
-            ))}
+            {products?.length === 0 ? (
+              <p className="col-span-12">No products found</p>
+            ) : (
+              products?.map((product) => {
+                return <ProductCard key={product.id} product={product} />;
+              })
+            )}
           </div>
         </div>
       </div>
