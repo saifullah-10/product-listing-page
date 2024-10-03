@@ -7,7 +7,7 @@ const Dashboard = () => {
         <div>
           <Link to={"/"}>
             {" "}
-            <p className=" text-2xl">Nexbell</p>
+            <p className=" font-poopins text-2xl">Nexbell</p>
           </Link>
         </div>
         <div>

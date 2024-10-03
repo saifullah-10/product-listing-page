@@ -13,7 +13,6 @@ const ProductDetails = () => {
       return response.data;
     },
   });
-  console.log(data);
 
   const discountPrice = (
     data?.price -
@@ -296,7 +295,7 @@ const ProductDetails = () => {
 
                 return (
                   <>
-                    <div className=" border p-2 rounded-xl">
+                    <div key={review?.date} className=" border p-2 rounded-xl">
                       <div className="flex items-center gap-2">
                         <div>
                           <p className="font-semibold flex items-center text-sm">
