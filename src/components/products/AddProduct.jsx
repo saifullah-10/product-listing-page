@@ -1,5 +1,11 @@
+import ProductForm from "./ProductForm";
+
 const AddProduct = () => {
-  return <div>Add</div>;
+  return (
+    <>
+      <ProductForm />
+    </>
+  );
 };
 
 export default AddProduct;

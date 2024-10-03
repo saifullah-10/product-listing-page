@@ -23,6 +23,7 @@ const Products = () => {
   const handleCheckBoxChange = (value) => {
     if (checked === value) {
       setChecked("");
+      setProducts(allProducts?.products);
     } else {
       setChecked(value);
     }
@@ -62,10 +63,10 @@ const Products = () => {
           <p>Logo</p>
         </div>
         <div>
-          <Link to={"/product-management"}>
+          <Link to={"/dashboard/add-product"}>
             {" "}
             <button className=" md:px-3 md:py-2 border rounded-lg lg:rounded-xl border-gray-300">
-              Product Management
+              Dashboard
             </button>
           </Link>
         </div>

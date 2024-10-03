@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import Root from "../Root";
 import Products from "../pages/Products";
-import ProductManagement from "../pages/ProductManagement";
+import Dashboard from "../pages/Dashboard";
 import AddProduct from "../components/products/AddProduct";
 import UpdateOrDelete from "../components/products/UpdateOrDelete";
 
@@ -15,15 +15,15 @@ export const router = createBrowserRouter([
         element: <Products />,
       },
       {
-        path: "/product-management",
-        element: <ProductManagement />,
+        path: "/dashboard",
+        element: <Dashboard />,
         children: [
           {
-            path: "/product-management/add",
+            path: "/dashboard/add-product",
             element: <AddProduct />,
           },
           {
-            path: "/product-management/updateordelete",
+            path: "/dashboard/updateordelete",
             element: <UpdateOrDelete />,
           },
         ],
