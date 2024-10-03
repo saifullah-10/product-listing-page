@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import { useState } from "react";
 import { addProduct, updateProduct } from "../../utils/productsApi";
+import Swal from "sweetalert2";
 
 const ProductForm = ({ data, type }) => {
   const formateText = type ? type[0].toUpperCase() + type.slice(1) : "";
@@ -55,12 +56,36 @@ const ProductForm = ({ data, type }) => {
     try {
       if (type === "add") {
         const res = await addProduct(formData);
-        console.log(res);
+        console.log(res.status);
+        if (res.status === 201) {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Add Product",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
       } else {
         const res = await updateProduct(formData, data.id);
-        console.log(res);
+        if (res.status === 200) {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Update Product",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
       }
     } catch (e) {
+      Swal.fire({
+        position: "top-end",
+        icon: "error",
+        title: "Try again",
+        showConfirmButton: false,
+        timer: 1500,
+      });
       console.log(e);
     }
   };

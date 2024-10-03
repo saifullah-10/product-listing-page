@@ -1,10 +1,29 @@
 import { Link } from "react-router-dom";
 import useContextData from "../../hooks/useContextData";
+import { axiosInstance } from "../../utils/axiosInstance";
+import Swal from "sweetalert2";
 
 const UpdateOrDelete = () => {
   const { allProducts } = useContextData();
 
   const data = allProducts?.products;
+
+  const deleteProduct = async (id) => {
+    try {
+      const response = await axiosInstance.delete(`/products/${id}`);
+      if (response.status === 200) {
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Delete Product",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   if (!data) {
     return (
@@ -40,7 +59,7 @@ const UpdateOrDelete = () => {
                     <td className="py-2 px-4 border">{product.title}</td>
                     <td className="py-2 px-4 border">$ {product.price}</td>
                     <td className="py-2 px-4 border">{product.stock}</td>
-                    <td className="py-2 px-4 border flex justify-center md:gap-2">
+                    <td className="py-2 px-4 border flex justify-center gap-2">
                       <Link
                         to={`/dashboard/updateordelete/update/${product.id}`}
                       >
@@ -49,7 +68,10 @@ const UpdateOrDelete = () => {
                         </button>
                       </Link>
 
-                      <button className="px-3 py-1 bg-red-500 rounded-lg text-white">
+                      <button
+                        onClick={() => deleteProduct(product?.id)}
+                        className="px-3 py-1 font-light bg-red-500 rounded-lg text-white"
+                      >
                         Delete
                       </button>
                     </td>
