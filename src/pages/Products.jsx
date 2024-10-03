@@ -64,9 +64,9 @@ const Products = () => {
   console.log(products);
   return (
     <section className="mt-5 w-11/12 font-poopins lg:max-w-screen-xl  mx-auto">
-      <div className="flex justify-between">
+      <div className="flex mb-5 justify-between">
         <div>
-          <p>Logo</p>
+          <p>Nexbell</p>
         </div>
         <div>
           <Link to={"/dashboard/add-product"}>

@@ -5,6 +5,7 @@ import Dashboard from "../pages/Dashboard";
 import AddProduct from "../components/products/AddProduct";
 import UpdateOrDelete from "../components/products/UpdateOrDelete";
 import UpdateProduct from "../components/products/UpdateProduct";
+import ProductDetails from "../pages/ProductDetails";
 
 export const router = createBrowserRouter([
   {
@@ -14,6 +15,10 @@ export const router = createBrowserRouter([
       {
         path: "/",
         element: <Products />,
+      },
+      {
+        path: "/details/:id",
+        element: <ProductDetails />,
       },
       {
         path: "/dashboard",

@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import { CiStar } from "react-icons/ci";
 import { IoIosArrowRoundForward } from "react-icons/io";
+import { Link } from "react-router-dom";
 
 const ProductCard = ({ product }) => {
   return (
@@ -20,9 +21,11 @@ const ProductCard = ({ product }) => {
       <h2 className=" font-light  text-lg lg:text-xl">{product.title}</h2>
       <div className="flex items-center justify-between py-1 ">
         <span className=" font-medium">${product.price}</span>
-        <button className=" px-3 py-1 font-light text-sm flex items-center gap-2 rounded-lg border-2">
-          <span>Details</span> <IoIosArrowRoundForward />
-        </button>
+        <Link to={`/details/${product.id}`}>
+          <button className=" px-3 py-1 font-light text-sm flex items-center gap-2 rounded-lg border-2">
+            <span>Details</span> <IoIosArrowRoundForward />
+          </button>
+        </Link>
       </div>
     </div>
   );
