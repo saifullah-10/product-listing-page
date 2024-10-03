@@ -4,6 +4,7 @@ import Products from "../pages/Products";
 import Dashboard from "../pages/Dashboard";
 import AddProduct from "../components/products/AddProduct";
 import UpdateOrDelete from "../components/products/UpdateOrDelete";
+import UpdateProduct from "../components/products/UpdateProduct";
 
 export const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ export const router = createBrowserRouter([
           {
             path: "/dashboard/updateordelete",
             element: <UpdateOrDelete />,
+          },
+          {
+            path: "/dashboard/updateordelete/update/:id",
+            element: <UpdateProduct />,
           },
         ],
       },

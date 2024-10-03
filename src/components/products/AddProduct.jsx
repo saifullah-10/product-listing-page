@@ -3,7 +3,7 @@ import ProductForm from "./ProductForm";
 const AddProduct = () => {
   return (
     <>
-      <ProductForm />
+      <ProductForm type="add" />
     </>
   );
 };

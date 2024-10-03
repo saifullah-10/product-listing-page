@@ -1,35 +1,38 @@
+import PropTypes from "prop-types";
 import { useState } from "react";
 
-const ProductForm = () => {
+const ProductForm = ({ data, type }) => {
+  const formateText = type ? type[0].toUpperCase() + type.slice(1) : "";
+  console.log(formateText);
   const [formData, setFormData] = useState({
-    title: "",
-    description: "",
-    category: "",
-    price: "",
-    discountPercentage: "",
-    stock: "",
+    title: data ? data.title : "",
+    description: data ? data.description : "",
+    category: data ? data.category : "",
+    price: data ? data.price : "",
+    discountPercentage: data ? data.discountPercentage : "",
+    stock: data ? data.stock : "",
     tags: "",
-    brand: "",
-    sku: "",
-    weight: "",
+    brand: data ? data.brand : "",
+    sku: data ? data.sku : "",
+    weight: data ? data.weight : "",
     dimensions: {
-      width: "",
-      height: "",
-      depth: "",
+      width: data ? data.dimensions.width : "",
+      height: data ? data.dimensions.height : "",
+      depth: data ? data.dimensions.depth : "",
     },
-    warrantyInformation: "",
-    shippingInformation: "",
-    availabilityStatus: "",
-    returnPolicy: "",
-    minimumOrderQuantity: "",
+    warrantyInformation: data ? data.warrantyInformation : "",
+    shippingInformation: data ? data.shippingInformation : "",
+    availabilityStatus: data ? data.availabilityStatus : "",
+    returnPolicy: data ? data.returnPolicy : "",
+    minimumOrderQuantity: data ? data.minimumOrderQuantity : "",
     meta: {
       createdAt: "",
       updatedAt: "",
       barcode: "",
       qrCode: "",
     },
-    images: "",
-    thumbnail: "",
+    images: data ? data.images[0] : "",
+    thumbnail: data ? data.thumbnail : "",
   });
 
   const handleInputChange = (e) => {
@@ -46,16 +49,21 @@ const ProductForm = () => {
       },
     });
   };
+  const formSubmit = (e) => {
+    e.preventDefault();
+    console.log(formData);
+  };
+
   return (
     <div className=" font-poopins">
       <div className=" mb-3  border-b-2 pb-2 font-semibold md:text-2xl text-xl ">
-        <h2>Add Product</h2>
+        <h2>{formateText} Product</h2>
       </div>
       <div className=" font-extralight">
-        <form className=" flex flex-col gap-3">
+        <form onSubmit={formSubmit} className=" flex flex-col gap-3 md:gap-5">
           <div className=" flex flex-col gap-1">
             {" "}
-            <label>Title:</label>
+            <label className=" font-light">Title:</label>
             <input
               type="text"
               name="title"
@@ -66,7 +74,7 @@ const ProductForm = () => {
           </div>
 
           <div className=" flex flex-col gap-1">
-            <label>Description:</label>
+            <label className=" font-light">Description:</label>
             <textarea
               name="description"
               value={formData.description}
@@ -77,7 +85,7 @@ const ProductForm = () => {
           </div>
           <div className=" flex gap-5 justify-between">
             <div className="flex-1 flex flex-col gap-1">
-              <label>Category:</label>
+              <label className=" font-light">Category:</label>
               <input
                 type="text"
                 name="category"
@@ -88,7 +96,7 @@ const ProductForm = () => {
             </div>
 
             <div className="flex-1 flex flex-col gap-1">
-              <label>Price:</label>
+              <label className=" font-light">Price:</label>
               <input
                 type="number"
                 name="price"
@@ -100,7 +108,7 @@ const ProductForm = () => {
           </div>
           <div className=" flex gap-5 justify-between">
             <div className="flex-1 flex flex-col gap-1">
-              <label>Discount Percentage:</label>
+              <label className=" font-light">Discount Percentage:</label>
               <input
                 type="number"
                 step="0.01"
@@ -111,7 +119,7 @@ const ProductForm = () => {
               />
             </div>
             <div className="flex-1 flex flex-col gap-1">
-              <label>Stock:</label>
+              <label className=" font-light">Stock:</label>
               <input
                 type="number"
                 name="stock"
@@ -124,7 +132,7 @@ const ProductForm = () => {
 
           <div className=" flex gap-5 justify-between">
             <div className="flex-1 flex flex-col gap-1">
-              <label>Tags (comma-separated):</label>
+              <label className=" font-light">Tags (comma-separated):</label>
               <input
                 type="text"
                 name="tags"
@@ -135,7 +143,7 @@ const ProductForm = () => {
             </div>
 
             <div className="flex-1 flex flex-col gap-1">
-              <label>Brand:</label>
+              <label className=" font-light">Brand:</label>
               <input
                 type="text"
                 name="brand"
@@ -147,7 +155,7 @@ const ProductForm = () => {
           </div>
 
           <div className="flex-1 flex flex-col gap-1">
-            <label>SKU:</label>
+            <label className=" font-light">SKU:</label>
             <input
               type="text"
               name="sku"
@@ -158,7 +166,7 @@ const ProductForm = () => {
           </div>
 
           <div className="flex-1 flex flex-col gap-1">
-            <label>Weight:</label>
+            <label className=" font-light">Weight:</label>
             <input
               type="number"
               name="weight"
@@ -169,11 +177,11 @@ const ProductForm = () => {
           </div>
 
           <fieldset>
-            <legend className=" mb-1">Dimensions:</legend>
+            <legend className=" mb-1 font-light">Dimensions:</legend>
             <div className=" flex items-center gap-2">
               <div className="flex-1 items-center flex gap-2">
                 {" "}
-                <label>Width:</label>
+                <label className=" font-light">Width:</label>
                 <input
                   type="number"
                   name="width"
@@ -183,7 +191,7 @@ const ProductForm = () => {
                 />
               </div>
               <div className="flex-1  items-center flex gap-2">
-                <label>Height:</label>
+                <label className=" font-light">Height:</label>
                 <input
                   type="number"
                   name="height"
@@ -193,7 +201,7 @@ const ProductForm = () => {
                 />
               </div>
               <div className="flex-1 items-center flex gap-2">
-                <label>Depth:</label>
+                <label className=" font-light">Depth:</label>
                 <input
                   type="number"
                   name="depth"
@@ -207,7 +215,7 @@ const ProductForm = () => {
 
           <div className=" flex gap-5 justify-between">
             <div className="flex-1 flex flex-col gap-1">
-              <label>Warranty Information:</label>
+              <label className=" font-light">Warranty Information:</label>
               <input
                 type="text"
                 name="warrantyInformation"
@@ -217,7 +225,7 @@ const ProductForm = () => {
               />
             </div>
             <div className="flex-1 flex flex-col gap-1">
-              <label>Shipping Information:</label>
+              <label className=" font-light">Shipping Information:</label>
               <input
                 type="text"
                 name="shippingInformation"
@@ -230,7 +238,7 @@ const ProductForm = () => {
 
           <div className=" flex gap-5 justify-between">
             <div className="flex-1 flex flex-col gap-1">
-              <label>Return Policy:</label>
+              <label className=" font-light">Return Policy:</label>
               <input
                 type="text"
                 name="returnPolicy"
@@ -241,7 +249,7 @@ const ProductForm = () => {
             </div>
 
             <div className="flex-1 flex flex-col gap-1">
-              <label>Minimum Order Quantity:</label>
+              <label className=" font-light">Minimum Order Quantity:</label>
               <input
                 type="number"
                 name="minimumOrderQuantity"
@@ -252,7 +260,9 @@ const ProductForm = () => {
             </div>
           </div>
           <div className="flex-1 flex flex-col gap-1">
-            <label>Images (comma-separated URLs):</label>
+            <label className=" font-light">
+              Images (comma-separated URLs):
+            </label>
             <input
               type="text"
               name="images"
@@ -263,7 +273,7 @@ const ProductForm = () => {
           </div>
 
           <div className="flex-1 flex flex-col gap-1">
-            <label>Thumbnail URL:</label>
+            <label className=" font-light">Thumbnail URL:</label>
             <input
               type="text"
               name="thumbnail"
@@ -272,13 +282,21 @@ const ProductForm = () => {
               className="outline-none bg-slate-100 border rounded-lg px-2 py-1 border-slate-300"
             />
           </div>
-
-          <button
-            className=" font-medium py-2 bg-blue-400 text-white rounded-lg"
-            type="submit"
-          >
-            Add Product
-          </button>
+          {type === "update" ? (
+            <button
+              className=" font-medium py-2 bg-blue-400 text-white rounded-lg"
+              type="submit"
+            >
+              Update Product
+            </button>
+          ) : (
+            <button
+              className=" font-medium py-2 bg-blue-400 text-white rounded-lg"
+              type="submit"
+            >
+              Add Product
+            </button>
+          )}
         </form>
       </div>
     </div>
@@ -286,3 +304,8 @@ const ProductForm = () => {
 };
 
 export default ProductForm;
+
+ProductForm.propTypes = {
+  data: PropTypes.object.isRequired,
+  type: PropTypes.string.isRequired,
+};

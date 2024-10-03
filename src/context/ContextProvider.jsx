@@ -17,7 +17,7 @@ const ContextProvider = ({ children }) => {
   if (isFetching || isLoading) {
     return <div>Loading...</div>;
   }
-  console.log(allProducts);
+
   return (
     <Context.Provider value={{ allProducts }}>{children}</Context.Provider>
   );
