@@ -70,7 +70,10 @@ const Products = () => {
     <section className="mt-5 w-11/12 font-poopins lg:max-w-screen-xl  mx-auto">
       <div className="flex mb-5 justify-between">
         <div>
-          <p>Nexbell</p>
+          <Link to={"/"}>
+            {" "}
+            <p className=" text-2xl">Nexbell</p>
+          </Link>
         </div>
         <div>
           <Link to={"/dashboard/add-product"}>
