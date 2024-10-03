@@ -2,6 +2,10 @@
 
 This project is an e-commerce web application where you can view, filter, and sort products on the homepage. You can also navigate to a product details page by clicking on the "Details" button for each product. Additionally, there is a simple dashboard that allows adding, updating, and deleting products.
 
+## Live Link 
+
+https://product-listing-page-drab.vercel.app/
+
 ## Features
 
 - **Product List**: Browse all products on the homepage with options to search, filter, and sort.
@@ -20,10 +24,10 @@ Follow these steps to install and run the project locally:
    ```bash
    git clone <repository-url>
    
-2. **Clone the repository**:
+2. **Install All Necessary Files**:
    ```bash
    npm install
    
-3. **Clone the repository**:
+3. **Run This Project**:
    ```bash
    npm run dev
