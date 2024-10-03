@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import useContextData from "../hooks/useContextData";
 import { axiosInstance } from "../utils/axiosInstance";
 import { Link } from "react-router-dom";
+import ProductCard from "../components/products/ProductCard";
 
 const Products = () => {
   const [searchValue, setSearchValue] = useState("");
@@ -13,6 +14,10 @@ const Products = () => {
   const handleSearch = (e) => {
     const search = e.target.value.toLowerCase();
     setSearchValue(search);
+    if (!search) {
+      setChecked("");
+      return setProducts(allProducts?.products);
+    }
     const filteredData = products?.filter((product) =>
       product.title.toLowerCase().includes(search)
     );
@@ -56,8 +61,9 @@ const Products = () => {
   if (!products || loading) {
     return <div>Loading...</div>;
   }
+  console.log(products);
   return (
-    <section className="mt-5 w-11/12  lg:max-w-screen-xl  mx-auto">
+    <section className="mt-5 w-11/12 font-poopins lg:max-w-screen-xl  mx-auto">
       <div className="flex justify-between">
         <div>
           <p>Logo</p>
@@ -72,40 +78,45 @@ const Products = () => {
         </div>
       </div>
       <div>
-        <div>
+        <div className=" mb-5 flex justify-center">
           <input
             type="text"
             placeholder="Search...."
             value={searchValue}
             onChange={handleSearch}
+            className=" bg-gray-200 outline-none border border-gray-300 px-3 w-96 rounded-full py-2"
           />
         </div>
-        <div className="flex ">
-          <aside>
-            <div>
-              <h3>Sort</h3>
+        <div className="md:flex gap-5 items-start ">
+          <aside className="border mb-5 md:mb-0 p-3 rounded-xl">
+            <h3>Sort</h3>
 
-              <div className=" flex flex-col">
-                <label>
-                  <input
-                    checked={checked === "desc"}
-                    type="checkbox"
-                    onChange={() => handleCheckBoxChange("desc")}
-                  />
-                  High To Low
-                </label>
-                <label>
-                  <input
-                    checked={checked === "asc"}
-                    type="checkbox"
-                    onChange={() => handleCheckBoxChange("asc")}
-                  />
-                  Low To High
-                </label>
-              </div>
+            <div className=" flex flex-col">
+              <label className=" flex gap-2 whitespace-nowrap">
+                <input
+                  checked={checked === "desc"}
+                  type="checkbox"
+                  onChange={() => handleCheckBoxChange("desc")}
+                />
+                High To Low
+              </label>
+              <label className=" flex gap-2 whitespace-nowrap">
+                <input
+                  checked={checked === "asc"}
+                  type="checkbox"
+                  onChange={() => handleCheckBoxChange("asc")}
+                />
+                Low To High
+              </label>
             </div>
           </aside>
-          <div></div>
+          <div className="grid lg:gap-8 md:gap-5 gap-3 grid-cols-12 w-full justify-items-center">
+            {products?.map((product) => (
+              <>
+                <ProductCard product={product} />
+              </>
+            ))}
+          </div>
         </div>
       </div>
     </section>

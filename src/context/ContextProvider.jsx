@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { createContext } from "react";
 import { getProducts } from "../utils/productsApi";
+import PropTypes from "prop-types";
 
 export const Context = createContext(null);
 
@@ -24,3 +25,7 @@ const ContextProvider = ({ children }) => {
 };
 
 export default ContextProvider;
+
+ContextProvider.propTypes = {
+  children: PropTypes.node.isRequired,
+};
