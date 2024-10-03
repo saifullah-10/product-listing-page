@@ -1,9 +1,10 @@
 import PropTypes from "prop-types";
 import { useState } from "react";
+import { addProduct, updateProduct } from "../../utils/productsApi";
 
 const ProductForm = ({ data, type }) => {
   const formateText = type ? type[0].toUpperCase() + type.slice(1) : "";
-  console.log(formateText);
+
   const [formData, setFormData] = useState({
     title: data ? data.title : "",
     description: data ? data.description : "",
@@ -49,9 +50,19 @@ const ProductForm = ({ data, type }) => {
       },
     });
   };
-  const formSubmit = (e) => {
+  const formSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
+    try {
+      if (type === "add") {
+        const res = await addProduct(formData);
+        console.log(res);
+      } else {
+        const res = await updateProduct(formData, data.id);
+        console.log(res);
+      }
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   return (
@@ -83,7 +94,7 @@ const ProductForm = ({ data, type }) => {
               className="outline-none bg-slate-100 border rounded-lg px-2 py-1 border-slate-300"
             ></textarea>
           </div>
-          <div className=" flex gap-5 justify-between">
+          <div className=" flex flex-col lg:flex-row gap-5 justify-between">
             <div className="flex-1 flex flex-col gap-1">
               <label className=" font-light">Category:</label>
               <input
@@ -106,7 +117,7 @@ const ProductForm = ({ data, type }) => {
               />
             </div>
           </div>
-          <div className=" flex gap-5 justify-between">
+          <div className=" flex-col lg:flex-row flex gap-5 justify-between">
             <div className="flex-1 flex flex-col gap-1">
               <label className=" font-light">Discount Percentage:</label>
               <input
@@ -130,7 +141,7 @@ const ProductForm = ({ data, type }) => {
             </div>
           </div>
 
-          <div className=" flex gap-5 justify-between">
+          <div className=" flex-col lg:flex-row flex gap-5 justify-between">
             <div className="flex-1 flex flex-col gap-1">
               <label className=" font-light">Tags (comma-separated):</label>
               <input
@@ -178,7 +189,7 @@ const ProductForm = ({ data, type }) => {
 
           <fieldset>
             <legend className=" mb-1 font-light">Dimensions:</legend>
-            <div className=" flex items-center gap-2">
+            <div className=" flex-col lg:flex-row flex md:items-center gap-2">
               <div className="flex-1 items-center flex gap-2">
                 {" "}
                 <label className=" font-light">Width:</label>
@@ -213,7 +224,7 @@ const ProductForm = ({ data, type }) => {
             </div>
           </fieldset>
 
-          <div className=" flex gap-5 justify-between">
+          <div className=" flex-col lg:flex-row flex gap-5 justify-between">
             <div className="flex-1 flex flex-col gap-1">
               <label className=" font-light">Warranty Information:</label>
               <input
@@ -236,7 +247,7 @@ const ProductForm = ({ data, type }) => {
             </div>
           </div>
 
-          <div className=" flex gap-5 justify-between">
+          <div className=" flex-col lg:flex-row flex gap-5 justify-between">
             <div className="flex-1 flex flex-col gap-1">
               <label className=" font-light">Return Policy:</label>
               <input
@@ -306,6 +317,6 @@ const ProductForm = ({ data, type }) => {
 export default ProductForm;
 
 ProductForm.propTypes = {
-  data: PropTypes.object.isRequired,
+  data: PropTypes.object,
   type: PropTypes.string.isRequired,
 };

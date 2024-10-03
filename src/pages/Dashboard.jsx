@@ -2,7 +2,7 @@ import { NavLink, Outlet } from "react-router-dom";
 
 const Dashboard = () => {
   return (
-    <section className="mt-5 max-w-screen-xl mx-auto">
+    <section className="mt-5 w-11/12  lg:max-w-screen-xl  mx-auto">
       <div className="flex justify-between">
         <div>
           <p>Logo</p>
@@ -10,15 +10,15 @@ const Dashboard = () => {
         <div>
           <NavLink to={"/"}>
             {" "}
-            <button className=" md:px-3 md:py-2 border rounded-lg lg:rounded-xl border-gray-300">
+            <button className=" px-3 py-1 md:px-5 md:py-2 border rounded-lg lg:rounded-xl border-gray-300">
               Home
             </button>
           </NavLink>
         </div>
       </div>
 
-      <div className=" mb-10 items-start  flex gap-10">
-        <aside className="bg-gray-200 h-96 gap-2 rounded-lg  p-5 flex flex-col">
+      <div className=" my-5 md:my-10 items-start  flex md:flex-row flex-col gap-3 md:gap-10">
+        <aside className="bg-gray-200 gap-2 rounded-lg p-2 md:p-5 flex  md:flex-col">
           <NavLink
             to={"/dashboard/add-product"}
             className={({ isActive }) =>
@@ -40,7 +40,7 @@ const Dashboard = () => {
             Update/Delete
           </NavLink>
         </aside>
-        <div className="  flex-1">
+        <div className=" w-full  md:flex-1">
           <Outlet></Outlet>
         </div>
       </div>

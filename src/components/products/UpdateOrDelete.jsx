@@ -13,7 +13,7 @@ const UpdateOrDelete = () => {
       </>
     );
   }
-  console.log(data);
+
   return (
     <>
       {" "}
@@ -35,7 +35,7 @@ const UpdateOrDelete = () => {
             <tbody>
               {data?.map((product) => (
                 <>
-                  <tr className="text-gray-700">
+                  <tr key={product.id} className="text-gray-700">
                     <td className="py-2 px-4 border">{product.id}</td>
                     <td className="py-2 px-4 border">{product.title}</td>
                     <td className="py-2 px-4 border">$ {product.price}</td>
